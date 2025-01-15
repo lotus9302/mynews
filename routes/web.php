@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+use App\Http\Controllers\Admin\NewsController;
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
@@ -26,33 +27,8 @@ Route::controller(AAAController::class)->group(function() {
 });
 
 
-{
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-public function add()
-{
-    return view('admin.profile.create');
-}
-
-public function create()
-{
-    return redirect('admin/profile/create');
-}
-
-public function edit()
-{
-    return view('admin.profile.edit');
-}
-
-public function update()
-{
-    return redirect('admin/profile/edit');
-}
-//
-}

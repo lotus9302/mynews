@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function add()
+    public function admin()
     {
-        return view('admin.profile.create');
+        Route::get('admin/profile/create', 'add');
     }
 
     public function create()
@@ -19,7 +19,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        return view('admin.profile.edit');
+        Route::get('admin/profile/create', 'edit');
     }
 
     public function update()
