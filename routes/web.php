@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,19 +16,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-use App\Http\Controllers\Admin\NewsController;
+Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('news/create', 'add')->name('news.add');
+    Route::post('news/create', 'create')->name('news.create');
+    Route::get('news', 'index')->name('news.index');
+    Route::get('news/edit', 'edit')->name('news.edit');
+    Route::post('news/edit', 'update')->name('news.update');
+    Route::get('news/delete', 'delete')->name('news.delete');
+}); 
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
-});
-
-Route::controller(AAAController::class)->group(function() {
-    Route::get('XXX/news/create', 'bbb');
-});
+// Route::controller(AAAController::class)->group(function() {
+//     Route::get('XXX/news/create', 'bbb');
+// });
 
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use App\Http\Controllers\NewsController as PublicNewsController;
+Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');
 
