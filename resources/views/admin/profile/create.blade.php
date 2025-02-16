@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.profile')
 @section('title', 'プロフィールの新規作成')
 
 @section('content')
@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール新規作成</h2>
-                <form action="{{ route('admin.news.create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.profile.create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
                         <ul>
@@ -16,21 +16,25 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
+                        <label class="col-md-2">氏名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="name" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">本文</label>
+                        <label class="col-md-2">性別</label>
                         <div class="col-md-10">
-                        <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
-                        </div>
+                        <textarea class="form-control" name="gender" rows="20">{{ old('gender') }}</textarea>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">画像</label>
+                        <label class="col-md-2">趣味</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
+                        <textarea class="form-control" name="hobby" rows="20">{{ old('hobby') }}</textarea>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">自己紹介欄</label>
+                        <div class="col-md-10">
+                            <input type="introduction" class="form-control-file" name="introduction">
                         </div>
                     </div>
                     @csrf
