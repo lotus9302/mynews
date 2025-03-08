@@ -7,7 +7,6 @@
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール新規作成</h2>
                 <form action="{{ route('admin.profile.create') }}" method="post" enctype="multipart/form-data">
-
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -24,17 +23,19 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
                         <div class="col-md-10">
-                        <textarea class="form-control" name="gender" rows="20">{{ old('gender') }}</textarea>
+                            <input type="text" class="form-control" name="gender" value="{{ old('gender') }}">
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">趣味</label>
                         <div class="col-md-10">
-                        <textarea class="form-control" name="hobby" rows="20">{{ old('hobby') }}</textarea>
+                            <textarea class="form-control" name="hobby" rows="20">{{ old('hobby') }}</textarea>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">自己紹介欄</label>
                         <div class="col-md-10">
-                            <input type="introduction" class="form-control-file" name="introduction">
+                            <textarea class="form-control" name="introduction" rows="20">{{ old('introduction') }}</textarea>
                         </div>
                     </div>
                     @csrf
