@@ -74,40 +74,33 @@ class NewsController extends Controller
         $news = News::find($request->id);
         // 送信されてきたフォームデータを格納する
         $news_form = $request->all();
+
+        if ($request->remove == 'true') {
+            $news_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/image');
+            $news_form['image_path'] = basename($path);
+        } else {
+            $news_form['image_path'] = $news->image_path;
+        }
+
+        unset($news_form['image']);
+        unset($news_form['remove']);
         unset($news_form['_token']);
 
         // 該当するデータを上書きして保存する
         $news->fill($news_form)->save();
 
+        $history = new History;
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+
         return redirect('admin/news');
     }
-    
+
     public function delete(Request $request)
     {
-        
-        $this->validate($request, News::$rules);
-
-        $news = new News;
-        $form = $request->all();
-
-        // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $news->image_path = basename($path);
-        } else {
-            $news->image_path = null;
-        }
-
-        // フォームから送信されてきた_tokenを削除する
-        unset($form['_token']);
-        // フォームから送信されてきたimageを削除する
-        unset($form['image']);
-
-        // データベースに保存する
-        $news->fill($form);
-        $news->save();
-        // 追記ここまで
-        // admin/news/createにリダイレクトする        
-        return redirect('admin/news/create');
+        # TODO: テキスト見直して実装し直す
     }
 }

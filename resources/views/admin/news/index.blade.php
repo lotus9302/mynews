@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 @section('title', '登録済みニュースの一覧')
 
@@ -55,3 +54,9 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
