@@ -51,3 +51,11 @@ Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use App\Http\Controllers\Admin\MyblogController;
+Route::controller(MyblogController::class)->prefix('admin')->group(function() {
+    Route::get('myblog/create', 'add');
+    Route::post('myblog/create', 'create')->name('myblog.create');
+    Route::get('myblog/edit', 'edit')->name('myblog.edit');
+});
+

@@ -1,13 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\History;
-use Carbon\Carbon;
-use App\Models\Profile;
-use App\Models\ProfileHistory;
-
 class ProfileController extends Controller
 {
     public function index(Request $request)
