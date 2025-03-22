@@ -34,6 +34,16 @@ Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->mi
     Route::post('profile/edit', 'update')->name('profile.update');
     Route::get('profile/delete', 'delete')->name('profile.delete');
 }); 
+
+
+Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('myblog/create', 'add')->name('myblog.add');
+    Route::post('myblog/create', 'create')->name('myblog.create');
+    Route::get('myblog', 'index')->name('myblog.index');
+    Route::get('myblog/edit', 'edit')->name('myblog.edit');
+    Route::post('myblog/edit', 'update')->name('myblog.update');
+    Route::get('myblog/delete', 'delete')->name('myblog.delete');
+}); 
 // Route::controller(AAAController::class)->group(function() {
 //     Route::get('XXX/news/create', 'bbb');
 // });
@@ -59,3 +69,6 @@ Route::controller(MyblogController::class)->prefix('admin')->group(function() {
     Route::get('myblog/edit', 'edit')->name('myblog.edit');
 });
 
+Route::controller(AAAController::class)->prefix('admin')->group(function() {
+    Route::get('profile/create', 'bbb');  
+});
