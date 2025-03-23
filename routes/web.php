@@ -70,5 +70,8 @@ Route::controller(MyblogController::class)->prefix('admin')->group(function() {
 });
 
 Route::controller(AAAController::class)->prefix('admin')->group(function() {
-    Route::get('profile/create', 'bbb');  
+    Route::get('profile/create', 'bbb');
+});      
+Route::controller(Admin¥ProfileController::class)->prefix('admin')->group(function() {    
+    Route::get('profile/create', 'update');
 });
