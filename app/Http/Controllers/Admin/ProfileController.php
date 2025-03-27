@@ -60,6 +60,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        // dd('updateが呼ばれた');
         // Validationをかける
         $this->validate($request, Profile::$rules);
         // News Modelからデータを取得する

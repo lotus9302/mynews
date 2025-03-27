@@ -36,14 +36,15 @@ Route::controller(ProfileController::class)->prefix('admin')->name('admin.')->mi
 }); 
 
 
-Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('myblog/create', 'add')->name('myblog.add');
-    Route::post('myblog/create', 'create')->name('myblog.create');
-    Route::get('myblog', 'index')->name('myblog.index');
-    Route::get('myblog/edit', 'edit')->name('myblog.edit');
-    Route::post('myblog/edit', 'update')->name('myblog.update');
-    Route::get('myblog/delete', 'delete')->name('myblog.delete');
-}); 
+// Route::controller(BlogController::class)->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+//     Route::get('myblog/create', 'add')->name('myblog.add');
+//     Route::post('myblog/create', 'create')->name('myblog.create');
+//     Route::get('myblog', 'index')->name('myblog.index');
+//     Route::get('myblog/edit', 'edit')->name('myblog.edit');
+//     Route::post('myblog/edit', 'update')->name('myblog.update');
+//     Route::get('myblog/delete', 'delete')->name('myblog.delete');
+//     Route::get('myblog/show', 'show')->name('myblog.show');
+// }); 
 // Route::controller(AAAController::class)->group(function() {
 //     Route::get('XXX/news/create', 'bbb');
 // });
@@ -62,16 +63,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-use App\Http\Controllers\Admin\MyblogController;
-Route::controller(MyblogController::class)->prefix('admin')->group(function() {
-    Route::get('myblog/create', 'add');
-    Route::post('myblog/create', 'create')->name('myblog.create');
-    Route::get('myblog/edit', 'edit')->name('myblog.edit');
-});
+// use App\Http\Controllers\Admin\MyblogController;
+// Route::controller(MyblogController::class)->prefix('admin')->group(function() {
+//     Route::get('myblog/create', 'add');
+//     Route::post('myblog/create', 'create')->name('myblog.create');
+//     Route::get('myblog/edit', 'edit')->name('myblog.edit');
+//     Route::get('myblog/index', 'index')->name('myblog.index'); 
+// });
 
-Route::controller(AAAController::class)->prefix('admin')->group(function() {
-    Route::get('profile/create', 'bbb');
-});      
-Route::controller(Admin¥ProfileController::class)->prefix('admin')->group(function() {    
-    Route::get('profile/create', 'update');
-});
+// Route::controller(AAAController::class)->prefix('admin')->group(function() {
+//     Route::get('profile/create', 'bbb');
+// });      
+// Route::controller(Admin¥ProfileController::class)->prefix('admin')->group(function() {    
+//     Route::get('profile/create', 'update');
+// });
