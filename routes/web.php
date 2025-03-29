@@ -77,3 +77,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::controller(Admin¥ProfileController::class)->prefix('admin')->group(function() {    
 //     Route::get('profile/create', 'update');
 // });
+
+use App\Http\Controllers\ProfileController as PublicProfileController;
+Route::get('/profile', [PublicProfileController::class, 'index'])->name('profile.index');
